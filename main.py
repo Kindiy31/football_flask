@@ -3,7 +3,7 @@ import flask
 import football_api
 from flask import Flask, render_template, request
 from database import dbase
-from data import default_season
+from data import default_season, IP
 
 app = Flask(__name__)
 navs = { "Чемпіонат": '/champ/', "Історія матчів": '/history/'}
@@ -103,4 +103,4 @@ def admin_functions(path):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=IP)
