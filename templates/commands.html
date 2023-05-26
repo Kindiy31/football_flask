@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+        <h1>Команди</h1>
+        <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="team-header">Команда</th>
+                    <th class="stat-header">Коротка назва</th>
+                    <th class="stat-header">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for command in commands %}
+                <tr>
+                    <td class="team-cell">{{ command['name'] }}</td>
+                    <td class="stat-cell">{{ command['short_name'] }}</td>
+                    <td class="stat-cell"><button type="submit" class="button-submit" name="remove" value="{{ command['id'] }}">Видалити команду</button></td>
+                </tr>
+                {% endfor %}
+                    <tr>
+                        <td class="team-cell"><input type="text" placeholder="Введіть назву" name="name"></td>
+                        <td class="stat-cell"><input type="text" placeholder="Коротка назва" name="short"></td>
+                        <td class="stat-cell"></td>
+
+                    </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" class="button-submit" name="add" value=1>Створити команду</button>
+        </form>
+
+    </div>
+
+{% endblock %}

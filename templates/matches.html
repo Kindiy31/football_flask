@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="post">
+    <br>
+    <h1>Заповніть таблицю, та додайте матч в чемпіонат</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="team-header">Команда Дім</th>
+                <th class="team-header">Команда Виїзд</th>
+                <th class="stat-header">Голи Господарів</th>
+                <th class="stat-header">Голи Виїздної команди</th>
+                <th class="stat-header">Сезон</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="team-cell">
+                    <select name="id_home">
+                    {% for command in commands %}
+                        <option value="{{ command['id'] }}">{{ command['name'] }}</option>
+                    {% endfor %}
+                    </select>
+                </td>
+                <td class="team-cell">
+                    <select name="id_out">
+                    {% for command in commands %}
+                        <option value="{{ command['id'] }}">{{ command['name'] }}</option>
+                    {% endfor %}
+                    </select>
+                </td>
+                <td class="team-cell">
+                    <input name="goal_home">
+                </td>
+                <td class="team-cell">
+                    <input name="goal_out">
+                </td>
+                <td class="team-cell">
+                    <input name="season">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="button-submit" name="add" value=1>Створити матч</button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <h1>Івано-франківськ | Сезон {{ season }}</h1>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="team-header">Команда</th>
+                    <th class="stat-header">Матчі</th>
+                    <th class="stat-header">W</th>
+                    <th class="stat-header">D</th>
+                    <th class="stat-header">L</th>
+                    <th class="stat-header">ГЗ</th>
+                    <th class="stat-header">ГП</th>
+                    <th class="stat-header">Очки</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td class="team-cell">{{ table_data[row]['short_name'] }} | {{ table_data[row]['name'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['matches'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['W'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['D'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['L'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['goal_out'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['goal_in'] }}</td>
+                    <td class="stat-cell">{{ table_data[row]['point'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
