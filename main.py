@@ -1,6 +1,5 @@
 import flask
 
-import football_api
 from flask import Flask, render_template, request
 from database import dbase
 from data import default_season, IP
