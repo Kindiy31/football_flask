@@ -2,16 +2,23 @@ import flask
 
 from flask import Flask, render_template, request
 from database import dbase
-from data import default_season, IP
+from data import default_season
 
 app = Flask(__name__)
-navs = { "Чемпіонат": '/champ/', "Історія матчів": '/history/'}
+navs = {"Новини": '/news/', "Чемпіонат": '/champ/', "Історія матчів": '/history/'}
 admin_navs = navs.copy()
 admin_navs['Команди'] = '/admin/commands/'
 admin_navs['Матчі'] = '/admin/matches/'
+admin_navs['Новини'] = '/admin/news/'
 @app.route('/')
 def home():
     return flask.redirect('/champ/')
+
+@app.route('/news/')
+def news():
+    news = dbase.get_all_news()
+    return render_template('news.html', navs=navs, news=news)
+
 @app.route('/history/')
 def history():
     args = request.args
@@ -100,6 +107,16 @@ def admin_functions(path):
         commands = dbase.take_commands()
         return render_template('matches.html', navs=admin_navs, commands=commands)
 
+    elif path == 'news':
+        if request.method == 'POST':
+            form = dict(request.form)
+            title = form.get('title')
+            description = form.get('description')
+            if title and description:
+                dbase.add_news(title=title, description=description)
+        news = dbase.get_all_news()
+        return render_template('news.html', navs=navs, news=news, isAdmin=True)
+
 
 if __name__ == '__main__':
-    app.run(host=IP)
+    app.run(host='0.0.0.0')

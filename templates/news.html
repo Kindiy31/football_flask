@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="post">
+    <br>
+    <h1>Новини</h1>
+    <br>
+    {% for new in news %}
+    <div class="containerCenter">
+
+       <div class="news">
+            <h2>{{ new['title'] }}</h2>
+            <h3>{{ new['description'] }}</h3>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if isAdmin %}
+    <form method="post">
+        <div class="containerCenter">
+
+       <div class="news">
+            <input type="text" name="title" placeholder="Титулка">
+            <input type="text" name="description" placeholder="Опис">
+           <button type="submit" class="button-submit" name="add" value=1>Додати новину</button>
+
+        </div>
+
+    </div>
+
+    </form>
+    {% endif %}
+
+</form>
+{% endblock %}

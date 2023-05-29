@@ -19,6 +19,11 @@ class db:
                                                         goal_home INTEGER,
                                                         goal_out INTEGER);
                                                         ''')
+        self.cur.execute(f'''CREATE TABLE IF NOT EXISTS news (
+                                                                id INTEGER PRIMARY KEY,
+                                                                title TEXT,
+                                                                description TEXT);
+                                                                ''')
         self.con.commit()
     def select_sqlite(self, table, values='*', where='', fetchall=False, cursor_dict=False):
         result = []
@@ -161,6 +166,19 @@ class db:
 
     def remove_command(self, id):
         self.delete_sqlite(table='commands', where=f'id={id}')
+        return
+
+    def add_news(self, title, description):
+        columns = ['title', 'description']
+        values = [title, description]
+        self.insert_sqlite(table='news', columns_list=columns, data=values)
+
+    def get_all_news(self):
+        news = self.select_sqlite(table='news', fetchall=True, cursor_dict=True)
+        return news
+
+    def delete_news(self, id):
+        self.delete_sqlite(table='news', where=f'id={id}')
         return
 dbase = db()
 #print(dbase.take_commands())
