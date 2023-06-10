@@ -7,6 +7,7 @@
         <tr>
             <th class="team-header">Господарі</th>
             <th class="team-header">Гості</th>
+            <th class="stat-header">Ліга</th>
             <th class="stat-header">Результат</th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
             <tr>
                 <td class="team-cell" style="border-left: 10px solid {{ match['color_home'] }}">{{ match['home_name'] }}</td>
                 <td class="team-cell" style="border-right: 10px solid {{ match['color_quest'] }}">{{ match['quest_name'] }}</td>
+                <td class="stat-cell">{{ match['league'] }}</td>
                 <td class="stat-cell">{{ match['goal_home'] }}:{{ match['goal_quest'] }}</td>
             </tr>
         {% endfor %}

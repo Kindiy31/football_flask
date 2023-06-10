@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form method="post">
+    <div class="container">
+        <h1>Ліги</h1>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="stat-header">ID</th>
+                    <th class="stat-header">Назва</th>
+                    <th class="stat-header">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in leagues %}
+                <tr>
+                    <td class="stat-cell">{{ row['id'] }}</td>
+                    <td class="stat-cell">{{ row['name'] }}</td>
+                    <td><button type="submit" class="button-submit" name="remove" value='{{ row["id"] }}'>Видалити лігу</button></td>
+
+                </tr>
+                {% endfor %}
+             {% if isAdmin %}
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="name" placeholder="Назва"></td>
+                    <td>        <button type="submit" class="button-submit" name="add" value=1>Додати лігу</button></td>
+                </tr>
+
+
+    {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+    </form>
+{% endblock %}

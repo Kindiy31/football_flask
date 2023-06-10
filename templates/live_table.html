@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
+    <form>
+        <select name="league">
+            {% for league in leagues %}
+            <option value="{{ league['id'] }}">{{ league['name'] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Шукати</button>
+    </form>
     <div class="container">
-        <h1>Івано-франківськ | Сезон {{ season }}</h1>
+        <h1>{{ current_league }} | Сезон {{ season }}</h1>
         <br>
         <table class="table">
             <thead>
